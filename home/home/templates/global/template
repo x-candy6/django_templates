@@ -1,0 +1,7 @@
+{% extends 'global/page.html' %}
+{% block title %} INSERT PROJECT NAME{% endblock %}
+{% block body %}
+<!--INSERT CONTENT-->
+
+{% endblock %}
+

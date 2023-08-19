@@ -1,0 +1,14 @@
+#+TITLE:DJANGO TEMPLATES
+#+AUTHOR:x-candy6
+#+DESCRIPTION:Templates used for django
+#+DATE:<2023-08-19 Sat>
+
+* home
+  The start of every project. Every module below is inherited from this raw project.
+  Upon cloning and using the below modules, you will also be using the code and configurations in this 'home' project.
+  This includes a pre-configured settings.py file for a web-app with a MySQL db
+
+* user_auth
+  This features a template for user authentication for things like login/register/logout.
+  
+

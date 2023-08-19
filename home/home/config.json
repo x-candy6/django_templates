@@ -1,0 +1,11 @@
+{
+	"Comment":"Insert DJANGO_SECRET_KEY from settings.py below",
+	"DJANGO_SECRET_KEY": "",
+
+	"DATABASE":"",
+	"USER":"",
+	"PASSWORD":"",
+	"HOST":"",
+	"PORT":"3306"
+
+}

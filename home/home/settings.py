@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = json.load(open(f"{BASE_DIR}/home/config.json"))['DJANGO_SECRET_KEY']
+PROJECT_NAME = "home"
+config = json.load(open(f"{BASE_DIR}/{PROJECT_NAME}/config.json"))
+SECRET_KEY = config['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,13 +56,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "home.urls"
+ROOT_URLCONF = f"{PROJECT_NAME}.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, 'home/templates'),
+            os.path.join(BASE_DIR, f'{PROJECT_NAME}/templates'),
         ],
         "APP_DIRS": False,
         "OPTIONS": {
@@ -74,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "home.wsgi.application"
+WSGI_APPLICATION = f"{PROJECT_NAME}.wsgi.application"
 
 
 # Database
@@ -84,11 +86,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "OPTIONS":{
-            "DATABASE":json.load(open(f"{BASE_DIR}/home/config.json"))['DATABASE'],
-            "USER":json.load(open(f"{BASE_DIR}/home/config.json"))['USER'],
-            "PASSWORD":json.load(open(f"{BASE_DIR}/home/config.json"))['PASSWORD'],
-            "HOST":json.load(open(f"{BASE_DIR}/home/config.json"))['HOST'],
-            "PORT":json.load(open(f"{BASE_DIR}/home/config.json"))['PORT'],
+            "DATABASE":config["DATABASE"],
+            "USER":config["USER"],
+            "PASSWORD":config["PASSWORD"],
+            "HOST":config["HOST"],
+            "PORT":config["PORT"],
         },
     }
 }
@@ -131,7 +133,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
-        "./home/static"
+        f"./{PROJECT_NAME}/static"
 ]
 
 # Default primary key field type

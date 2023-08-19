@@ -16,6 +16,7 @@ import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_NAME = ""
 #print(os.path.join(BASE_DIR, 'home/templates'))
 
 
@@ -82,10 +83,17 @@ WSGI_APPLICATION = "home.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "OPTIONS":{
+            "DATABASE":json.load(open(f"{BASE_DIR}/home/config.json"))['DATABASE'],
+            "USER":json.load(open(f"{BASE_DIR}/home/config.json"))['USER'],
+            "PASSWORD":json.load(open(f"{BASE_DIR}/home/config.json"))['PASSWORD'],
+            "HOST":json.load(open(f"{BASE_DIR}/home/config.json"))['HOST'],
+            "PORT":json.load(open(f"{BASE_DIR}/home/config.json"))['PORT'],
+        },
     }
 }
+
 
 
 # Password validation

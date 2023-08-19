@@ -1,5 +1,4 @@
 {
-	"Comment":"Insert DJANGO_SECRET_KEY from settings.py below",
 	"DJANGO_SECRET_KEY": "",
 
 	"DATABASE":"",

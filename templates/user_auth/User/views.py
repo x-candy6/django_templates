@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
+import requests
 from . import forms
+from . import models
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'User/home.html')
 
 def loginPage(request):
     if request.method == 'POST':
@@ -39,6 +43,8 @@ def logoutPage(request):
     logout(request)
     return redirect('home')
 
+
+
 def registrationPage(request):
     # print(request.session.session_key)
     # print(request.session['visitorIP'])
@@ -47,18 +53,21 @@ def registrationPage(request):
         # Prepare the session and the forms.
         user_form = forms.userRegistrationForm(request.POST)
         # Check for Validation errors and send them back to the page
-        if not user_form.is_valid():
+        if not user_form.is_valid() and not address_form.is_valid():
             print(user_form.errors)
-            return render(request, 'User/register.html', {'user_form': user_form,  'feedback': "Error", 'error': user_form.errors})
+            return render(request, 'User/register.html', {'user_form': user_form, 'feedback': "Error", 'error': user_form.errors})
         else:
             # Save the user, the account, and log in the new user
             user = user_form.save()
+
             username = request.POST['username']
             password = request.POST['password1']
-            user = authenticate(request, username=username, password=password)
+
             if user is not None:
                 login(request, user)
-                # trying to figure out how to put the next 3 lines above 'if user is not None'
+
+                profile = models.Profile(id=request.user)
+                profile.save()
 
 
                 return render(request, "global/home.html", {})
@@ -67,3 +76,6 @@ def registrationPage(request):
                 return render(request, "User/invalidLogin.html")
     # If just a GET request, then send them the html.
     return render(request, 'User/register.html', {'user_form': user_form})
+
+def profile(request):
+    return render(request, 'User/profile.html')

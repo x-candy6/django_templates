@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-PROJECT_NAME = "home"
-config = json.load(open(f"{BASE_DIR}/{PROJECT_NAME}/config.json"))
+PROJECT_NAME = "JobTracker"
+config = json.load(open(f"{BASE_DIR}/config.json"))
 SECRET_KEY = config['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -37,7 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #"homepage.apps.HomepageConfig",
+    "User.apps.UserConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -86,11 +86,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "OPTIONS":{
-            "DATABASE":config["DATABASE"],
-            "USER":config["USER"],
-            "PASSWORD":config["PASSWORD"],
-            "HOST":config["HOST"],
-            "PORT":config["PORT"],
+            "database":config["DATABASE"],
+            "user":config["USER"],
+            "password":config["PASSWORD"],
+            "host":config["HOST"],
+            "port":config["PORT"],
         },
     }
 }

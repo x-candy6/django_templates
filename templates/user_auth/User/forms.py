@@ -22,6 +22,12 @@ class userRegistrationForm(UserCreationForm):
         fields = ['username', 'first_name', 'last_name',
                   'email', 'password1', 'password2']
 
+class AddressForm(forms.Form):
+    street = forms.CharField(max_length=100, label='Street Address')
+    city = forms.CharField(max_length=50, label='City')
+    state = forms.CharField(max_length=50, label='State')
+    zip_code = forms.CharField(max_length=10, label='ZIP Code')
+
 ## Profile Page Forms --------------------------------
 ## Verifies user changes in Account Details card
 #class profilePage_UserForm(ModelForm):

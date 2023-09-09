@@ -1,4 +1,8 @@
-{% block body%}
+
+{% extends 'global/page.html' %}
+{% block title %} Register{% endblock %}
+<!--INSERT CONTENT-->
+{% block body %}
             <h6 class="card-subtitle mb-2 text-muted">Sign-Up:</h6>
             <form class="register" style="width: 450px;" method="POST" action="">
                 {% csrf_token %}
@@ -35,6 +39,7 @@
                     <b>{{accountForm.dob.label}}</b><br>
                     {{accountForm.dob}}<br>
                 </label><br><br>
+		{{address_form}}
 
                 <div class="col">
                     <button class="btn btn-primary pt-2" type="submit">
@@ -50,4 +55,5 @@
                     <p>Already a member? <a href="/login">Log In</a></p>
                 </div>
             </form>
-{% endblock%}
+
+{% endblock %}
